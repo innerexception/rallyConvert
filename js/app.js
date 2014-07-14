@@ -49,7 +49,7 @@ StringConverterApp.prototype = {
         //Make sure they entered something
         if(userString){
             //Get rid of dashes
-            userString = userString.replace('-', ' ');
+            userString = userString.replace('-', ' ').toLowerCase();
             //Split into tokens
             var tokensArray = userString.split(' ');
 
