@@ -70,7 +70,7 @@ StringConverterApp.prototype = {
                 var multiplierIncrementPair = this.dict[tokensArray[0]];
                 if(multiplierIncrementPair){
                     //First value in pair is multiplier, second is increment
-                    intResult = (intResult * multiplierIncrementPair[0]) + multiplierIncrementPair[1];
+                    currentTriplet = (currentTriplet * multiplierIncrementPair[0]) + multiplierIncrementPair[1];
 
                     if(multiplierIncrementPair[0] > 100){
                         intResult += currentTriplet;
