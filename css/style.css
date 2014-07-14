@@ -1,21 +1,13 @@
-/* Put your CSS here */
-.ember-application {
+button{
+    width: 10em;
+}
+div{
+    padding: 1em;
+}
+.inline-field{
+    display: inline-block;
+}
+#appRoot{
     margin: 2em;
 }
 
-button{
-    width:10.0em;
-}
-.button-container{
-    margin:1.5em;
-}
-
-.quiz-graded.answer-correct{
-    background: #5E740B;
-}
-.quiz-graded.answer-incorrect{
-    background: #710909;
-}
-.quiz-ungraded.answer-selected{
-    background: #2b81af;
-}
