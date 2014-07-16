@@ -8,24 +8,24 @@ var StringConverterApp = function(){
         "sixty", "seventy", "eighty", "ninety"];
     this.multipliers = ["hundred", "thousand", "million", "billion", "trillion"];
 
-    this.dict = {};
+    this.wordToNumberTupleDict = {};
     for(var i=0; i<this.units.length; i++){
         var currentUnit = this.units[i];
         //First value in pair is multiplier, second is increment
-        this.dict[currentUnit] = [1, i];
+        this.wordToNumberTupleDict[currentUnit] = [1, i];
     }
     for(i=1; i<this.tens.length; i++){
         currentUnit = this.tens[i];
         //First value in pair is multiplier, second is increment
-        this.dict[currentUnit] = [1, i*10];
+        this.wordToNumberTupleDict[currentUnit] = [1, i*10];
     }
     for(i=0; i<this.multipliers.length; i++){
         currentUnit = this.multipliers[i];
         //First value in pair is multiplier, second is increment
         if(i===0)
-            this.dict[currentUnit] = [100, 0];
+            this.wordToNumberTupleDict[currentUnit] = [100, 0];
         else
-            this.dict[currentUnit] = [Math.pow(10, i*3), 0]; //(when i===1 this is 1000,0)
+            this.wordToNumberTupleDict[currentUnit] = [Math.pow(10, i*3), 0]; //(when i===1 this is 1000,0)
     }
 };
 
@@ -67,7 +67,7 @@ StringConverterApp.prototype = {
 
             while(tokensArray.length > 0){
                 //Find out what the multiplier/increment is
-                var multiplierIncrementPair = this.dict[tokensArray[0]];
+                var multiplierIncrementPair = this.wordToNumberTupleDict[tokensArray[0]];
                 if(multiplierIncrementPair){
                     //First value in pair is multiplier, second is increment
                     currentTriplet = (currentTriplet * multiplierIncrementPair[0]) + multiplierIncrementPair[1];
@@ -89,81 +89,6 @@ StringConverterApp.prototype = {
         }
         return null;
     },
-    getTokenIntValue: function(token){
-        switch(token){
-            case 'one':
-                return 1;
-                break;
-            case 'two':
-                return 2;
-                break;
-            case 'three':
-                return 3;
-                break;
-            case 'four':
-                return 4;
-                break;
-            case 'five':
-                return 5;
-                break;
-            case 'six':
-                return 6;
-                break;
-            case 'seven':
-                return 7;
-                break;
-            case 'eight':
-                return 8;
-                break;
-            case 'nine':
-                return 9;
-                break;
-            case 'ten':
-                return 10;
-                break;
-            case 'twenty':
-                return 20;
-                break;
-            case 'thirty':
-                return 30;
-                break;
-            case 'forty':
-                return 40;
-                break;
-            case 'fifty':
-                return 50;
-                break;
-            case 'sixty':
-                return 60;
-                break;
-            case 'seventy':
-                return 70;
-                break;
-            case 'eighty':
-                return 80;
-                break;
-            case 'ninety':
-                return 90;
-                break;
-            case 'hundred':
-                return 100;
-                break;
-            case 'thousand':
-                return 1000;
-                break;
-            case 'million':
-                return 1000000;
-                break;
-            case 'billion':
-                return 1000000000;
-                break;
-            case 'trillion':
-                return 1000000000000;
-                break;
-            default:
-                return null;
-        }
-    },
     createDelegate: function(object, method){
         var shim =  function()
         {
@@ -173,4 +98,4 @@ StringConverterApp.prototype = {
     }
 }
 
-var app = new StringConverterApp();
+var StringConverterInstance = new StringConverterApp();
